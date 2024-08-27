@@ -25,11 +25,11 @@ export default function BudgetRequest() {
   };
 
   return (
-    <div className="min-h-screen rounded-md flex flex-col bg-purple-100 p-8 gap-4">
-      <h1 className="text-2xl font-semibold text-left">
+    <div className="min-h-screen rounded-md flex flex-col bg-purple-100 p-4 sm:p-8 gap-4">
+      <h1 className="text-xl sm:text-2xl font-semibold text-left">
         คำของบประมาณ
       </h1>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-col sm:flex-row justify-between space-y-2 sm:space-y-0">
         <div className="flex justify-start space-x-2">
           <button
             type="submit"
@@ -45,6 +45,7 @@ export default function BudgetRequest() {
             ค้นหา Template
           </button>
         </div>
+        
         <div className="flex justify-end space-x-2">
           <button
             type="submit"
@@ -61,7 +62,7 @@ export default function BudgetRequest() {
         </div>
       </div>
       
-      <div className="bg-white p-6 rounded-md shadow-md w-full mx-auto">
+      <div className="bg-white p-4 sm:p-6 rounded-md shadow-md w-full mx-auto">
         <form>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             {/* Year Field */}

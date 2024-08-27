@@ -38,13 +38,13 @@ export default function PopUpTemplate({ onClose, onConfirm }) {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-      <div className="bg-purple-100 rounded-md shadow-lg w-full m-20">
+      <div className="bg-purple-100 rounded-md shadow-lg w-full mx-20 ">
         <h1 className="bg-fuchsia-600 text-white text-2xl font-bold p-5 h-20 flex items-center">
           ค้นหา Template ของคำของบประมาณ
         </h1>
 
         <div className="mx-8 pt-8 pb-2 rounded-md">
-          <form className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+          <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
             <InputField label="ชื่อ Template" />
             <InputField label="แผนงาน" />
             <InputField label="ผลผลิต" />
@@ -55,7 +55,7 @@ export default function PopUpTemplate({ onClose, onConfirm }) {
           </form>
         </div>
 
-        <div className="bg-white mx-8 mt-2 mb-8 p-8 rounded-md">
+        <div className="bg-white mx-8 mt-2 mb-8 p-8 rounded-md overflow-x-auto">
           <div className="flex justify-between mb-4">
             <div className="text-xl font-semibold">เลือก Template</div>
             <div className="space-x-2">
