@@ -1,18 +1,7 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
+import InputField from '../utils/InputField'; // นำเข้า InputField
 
-// Input field component
-const InputField = ({ label }) => (
-  <div>
-    <label className="block text-sm font-medium text-black">{label}</label>
-    <input
-      type="text"
-      className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-    />
-  </div>
-);
-
-// Table row component
 const TableRow = ({ template, plan, product, activity, budget, expenseCategory, department, year }) => (
   <tr>
     <td className="border p-2 text-center">
@@ -30,32 +19,81 @@ const TableRow = ({ template, plan, product, activity, budget, expenseCategory, 
 );
 
 export default function PopUpTemplate({ onClose, onConfirm }) {
+  const [TemSearch, setSearchTerm] = useState('');
+  const [PlanSearch, setPlandSearch] = useState('');
+  const [ResultSearch, setResultSearch] = useState('');
+  const [ActivitySearch, setActivitySearch] = useState('');
+  const [BudgetSearch, setBudgetSearch] = useState('');
+  const [CatBudgetSearch, setCatBudgetSearch] = useState('');
+  const [TypeBudgetSearch, setTypeBudgetSearch] = useState('');
+
   const templates = [
-    { template: 'Template 1', plan: 'แผนงาน A', product: 'ผลผลิต B', activity: 'กิจกรรม C', budget: '100,000 บาท', expenseCategory: 'ค่าใช้จ่าย D', department: 'หน่วยงาน E', year: '2567' },
-    { template: 'Template 2', plan: 'แผนงาน A', product: 'ผลผลิต B', activity: 'กิจกรรม C', budget: '100,000 บาท', expenseCategory: 'ค่าใช้จ่าย D', department: 'หน่วยงาน E', year: '2567' },
+    { template: 'Template 1', plan: 'แผนงาน A', product: 'ผลผลิต A', activity: 'กิจกรรม A', budget: 'งบดำเนินการ', expenseCategory: 'ค่าใช้จ่าย A', department: 'หน่วยงาน A', year: '2567' },
+    { template: 'Template 2', plan: 'แผนงาน A', product: 'ผลผลิต B', activity: 'กิจกรรม B', budget: 'งบดำเนินการ', expenseCategory: 'ค่าใช้จ่าย B', department: 'หน่วยงาน A', year: '2567' },
+    { template: 'Template 3', plan: 'แผนงาน B', product: 'ผลผลิต B', activity: 'กิจกรรม C', budget: 'งบดำเนินการ', expenseCategory: 'ค่าใช้จ่าย A', department: 'หน่วยงาน B', year: '2567' },
+    { template: 'Template 4', plan: 'แผนงาน D', product: 'ผลผลิต X', activity: 'กิจกรรม X', budget: 'งบดำเนินการ', expenseCategory: 'ค่าใช้จ่าย B', department: 'หน่วยงาน B', year: '2567' },
+    { template: 'Template 5', plan: 'แผนงาน E', product: 'ผลผลิต Z', activity: 'กิจกรรม Z', budget: 'งบดำเนินการ', expenseCategory: 'ค่าใช้จ่าย B', department: 'หน่วยงาน B', year: '2567' },
     // เพิ่มรายการ Template ที่ต้องการ
   ];
 
+  const filteredTemplates = templates.filter(template =>
+    template.template.toLowerCase().includes(TemSearch.toLowerCase()) &&
+    template.plan.toLowerCase().includes(PlanSearch.toLowerCase()) &&
+    template.product.toLowerCase().includes(ResultSearch.toLowerCase()) &&
+    template.activity.toLowerCase().includes(ActivitySearch.toLowerCase()) &&
+    template.budget.toLowerCase().includes(BudgetSearch.toLowerCase()) &&
+    template.expenseCategory.toLowerCase().includes(CatBudgetSearch.toLowerCase()) &&
+    template.year.toLowerCase().includes(TypeBudgetSearch.toLowerCase())
+  );
+
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-      <div className="bg-purple-100 rounded-md shadow-lg w-full mx-20 ">
-        <h1 className="bg-fuchsia-600 text-white text-2xl font-bold p-5 h-20 flex items-center">
+      <div className="bg-purple-100 rounded-md shadow-lg w-full m-4 lg:m-20">
+        <h1 className="bg-fuchsia-600 rounded-t-md text-white text-2xl font-bold p-5 h-20 flex items-center">
           ค้นหา Template ของคำของบประมาณ
         </h1>
 
-        <div className="mx-8 pt-8 pb-2 rounded-md">
+        <div className="mx-4 lg:mx-8 pt-8 pb-2 rounded-md">
           <form className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-            <InputField label="ชื่อ Template" />
-            <InputField label="แผนงาน" />
-            <InputField label="ผลผลิต" />
-            <InputField label="กิจกรรม" />
-            <InputField label="งบรายจ่าย" />
-            <InputField label="หมวด คชจ." />
-            <InputField label="ประเเภทงบประมาณ" />
+            <InputField
+              label="ชื่อ Template"
+              value={TemSearch}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <InputField
+              label="แผนงาน"
+              value={PlanSearch}
+              onChange={(e) => setPlandSearch(e.target.value)}
+            />
+            <InputField
+              label="ผลผลิต"
+              value={ResultSearch}
+              onChange={(e) => setResultSearch(e.target.value)}
+            />
+            <InputField
+              label="กิจกรรม"
+              value={ActivitySearch}
+              onChange={(e) => setActivitySearch(e.target.value)}
+            />
+            <InputField
+              label="งบรายจ่าย"
+              value={BudgetSearch}
+              onChange={(e) => setBudgetSearch(e.target.value)}
+            />
+            <InputField
+              label="หมวดหมู่ คชจ."
+              value={CatBudgetSearch}
+              onChange={(e) => setCatBudgetSearch(e.target.value)}
+            />
+            <InputField
+              label="ประเภทงบประมาณ"
+              value={TypeBudgetSearch}
+              onChange={(e) => setTypeBudgetSearch(e.target.value)}
+            />
           </form>
         </div>
 
-        <div className="bg-white mx-8 mt-2 mb-8 p-8 rounded-md overflow-x-auto">
+        <div className="bg-white mx-4 lg:mx-8 mt-2 mb-8 p-4 lg:p-8 rounded-md overflow-x-auto">
           <div className="flex justify-between mb-4">
             <div className="text-xl font-semibold">เลือก Template</div>
             <div className="space-x-2">
@@ -64,7 +102,7 @@ export default function PopUpTemplate({ onClose, onConfirm }) {
             </div>
           </div>
 
-          <table className="w-full border-collapse">
+          <table className="w-full min-w-[700px] border-collapse text-sm">
             <thead>
               <tr>
                 {['เลือก', 'ชื่อ Template', 'แผนงาน', 'ผลผลิต', 'กิจกรรม', 'งบรายจ่าย', 'หมวดหมู่ค่าใช้จ่าย', 'ใช้กับหน่วยงาน', 'ใช้กับปีงบประมาณ'].map((header) => (
@@ -73,7 +111,7 @@ export default function PopUpTemplate({ onClose, onConfirm }) {
               </tr>
             </thead>
             <tbody>
-              {templates.map((template, index) => (
+              {filteredTemplates.map((template, index) => (
                 <TableRow key={index} {...template} />
               ))}
             </tbody>

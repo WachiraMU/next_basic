@@ -20,7 +20,7 @@ const TableauEmbed = () => {
 
     const handleScriptLoad = () => {
       const containerDiv = containerRef.current;
-      const url = 'https://nsmartplusdashboard.nhealth-asia.com/views/Management_Dashboard_UAT/ManagementOverall';
+      const url = 'https://nsmartplusdashboard.nhealth-asia.com/views/Management_Dashboard_UAT/ManagementOverall?&uuid=fdb08b8d-4593-4360-ab65-6e7642ee5cb7';
 
       const options = {
         hideTabs: true,
