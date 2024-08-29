@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import TableauEmbed from './components/TableauEmbed';
 
 export default function RootLayout({ children }) {
   const [open, setOpen] = useState(false);
@@ -40,6 +41,8 @@ export default function RootLayout({ children }) {
           </div>
         </div>
         <Footer />
+       
+        
       </body>
     </html>
   );
